@@ -12,6 +12,7 @@
     <xs:element name="getCountryResponse">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="status" type="xs:int" />
                 <xs:element name="country" type="tns:country"/>
             </xs:sequence>
         </xs:complexType>

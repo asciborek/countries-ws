@@ -1,6 +1,7 @@
 package com.github.asciborek;
 
 import com.github.asciborek.countries_ws.Currency;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import com.github.asciborek.countries_ws.Country;
@@ -45,8 +46,8 @@ public final class CountryRepository {
 
   }
 
-  Country findByName(String name) {
-    return countriesMap.get(name);
+  Optional<Country> findByName(String name) {
+    return Optional.ofNullable(countriesMap.get(name));
   }
 
 
