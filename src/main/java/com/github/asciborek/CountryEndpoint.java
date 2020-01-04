@@ -1,6 +1,5 @@
 package com.github.asciborek;
 
-import com.github.asciborek.countries_ws.Country;
 import com.github.asciborek.countries_ws.GetCountryRequest;
 import com.github.asciborek.countries_ws.GetCountryResponse;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
