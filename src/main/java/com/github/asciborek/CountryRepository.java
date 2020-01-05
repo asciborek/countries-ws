@@ -1,10 +1,13 @@
 package com.github.asciborek;
 
+import com.github.asciborek.countries_ws.Country;
 import com.github.asciborek.countries_ws.Currency;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import com.github.asciborek.countries_ws.Country;
+import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
@@ -41,8 +44,16 @@ public final class CountryRepository {
     uk.setPopulation(63705000);
     uk.getLocales().add("uk");
 
-
     countriesMap.put(uk.getName(), uk);
+
+    Country ch = new Country();
+    ch.setName("Switzerland");
+    ch.setCapital("Bern");
+    ch.setCurrency(Currency.CHF);
+    ch.setPopulation(8556000);
+    ch.getLocales().addAll(Arrays.asList("de", "fr", "it"));
+
+    countriesMap.put(ch.getName(), ch);
 
   }
 
@@ -50,6 +61,9 @@ public final class CountryRepository {
     return Optional.ofNullable(countriesMap.get(name));
   }
 
-
-
+  List<Country> findByLocale(String locale) {
+    return countriesMap.values().stream()
+        .filter(country -> country.getLocales().contains(locale))
+        .collect(Collectors.toUnmodifiableList());
+  }
 }

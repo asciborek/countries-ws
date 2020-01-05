@@ -1,7 +1,11 @@
 package com.github.asciborek;
 
+import com.github.asciborek.countries_ws.Country;
+import com.github.asciborek.countries_ws.GetCountriesByLocaleRequest;
+import com.github.asciborek.countries_ws.GetCountriesByLocaleResponse;
 import com.github.asciborek.countries_ws.GetCountryRequest;
 import com.github.asciborek.countries_ws.GetCountryResponse;
+import java.util.List;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -33,6 +37,16 @@ public final class CountryEndpoint {
       response.setStatus(0);
       return response;
     }).orElse(NOT_FOUND_RESPONSE);
+  }
+
+
+  @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCountriesByLocaleRequest")
+  @ResponsePayload
+  public GetCountriesByLocaleResponse getCountriesByLocale(@RequestPayload GetCountriesByLocaleRequest request) {
+    List<Country> countries = countryRepository.findByLocale(request.getLocale());
+    GetCountriesByLocaleResponse response = new GetCountriesByLocaleResponse();
+    response.getCountry().addAll(countries);
+    return response;
   }
 
 }

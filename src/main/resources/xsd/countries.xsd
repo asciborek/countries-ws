@@ -18,6 +18,22 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="getCountriesByLocaleRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="locale" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCountriesByLocaleResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="country" type="tns:country" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:complexType name="country">
         <xs:sequence>
             <xs:element name="name" type="xs:string"/>
@@ -33,6 +49,7 @@
             <xs:enumeration value="GBP"/>
             <xs:enumeration value="EUR"/>
             <xs:enumeration value="PLN"/>
+            <xs:enumeration value="CHF"/>
         </xs:restriction>
     </xs:simpleType>
 
