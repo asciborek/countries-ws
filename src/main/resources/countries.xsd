@@ -18,10 +18,10 @@
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="getCountryByCurrencyRequest">
+  <xs:element name="getCountriesByCurrencyRequest">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="currency" type="tns:currency" minOccurs="1" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

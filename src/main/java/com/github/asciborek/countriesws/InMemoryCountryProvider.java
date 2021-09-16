@@ -1,9 +1,10 @@
 package com.github.asciborek.countriesws;
 
-import java.util.HashMap;
-import java.util.Map;
 import com.github.asciborek.countries_ws.Country;
 import com.github.asciborek.countries_ws.Currency;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
@@ -22,6 +23,13 @@ public class InMemoryCountryProvider implements CountryProvider {
     spain.setPopulation(46704314);
 
     countries.put(spain.getName(), spain);
+
+    Country germany = new Country();
+    germany.setName("Germany");
+    germany.setCapital("Berlin");
+    germany.setCurrency(Currency.EUR);
+    germany.setPopulation(83000000);
+    countries.put(germany.getName(), germany);
 
     Country poland = new Country();
     poland.setName("Poland");
@@ -44,4 +52,12 @@ public class InMemoryCountryProvider implements CountryProvider {
   public Optional<Country> findByCountry(String country) {
     return Optional.ofNullable(countries.get(country));
   }
+
+  @Override
+  public List<Country> getCountriesByCurrency(Currency currency) {
+    return countries.values().stream()
+        .filter(country -> country.getCurrency().equals(currency))
+        .toList();
+  }
+
 }
