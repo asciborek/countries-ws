@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:gs="http://asciborek.github.com/countries-ws">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <gs:getCountriesByCurrencyRequest>
+      <gs:currency>EUR</gs:currency>
+    </gs:getCountriesByCurrencyRequest>
+  </soapenv:Body>
+</soapenv:Envelope>
